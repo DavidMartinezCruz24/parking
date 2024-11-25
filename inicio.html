@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f9;
+            min-height: 100vh;
+        }
+        header {
+            width: 100%;
+            background-color: #004aad;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #004aad;
+            color: white;
+        }
+        select, button, input {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+        button:hover {
+            background-color: #0066cc;
+        }
+        select {
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .password-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>Inicio de Sesión</header>
+    <div class="container" id="login-container">
+        <label for="user-type">Seleccione el tipo de usuario:</label>
+        <select id="user-type" onchange="mostrarOpciones()">
+            <option value="">Seleccione una opción</option>
+            <option value="user">Usuario</option>
+            <option value="admin">Administrador</option>
+        </select>
+        <div id="password-container" class="password-container">
+            <label for="password">Contraseña de Administrador:</label>
+            <input type="password" id="password" placeholder="Ingrese la contraseña" />
+            <button onclick="verificarContraseña()">Ingresar como Administrador</button>
+        </div>
+        <button id="proceed-btn" onclick="proceed()" style="display:none;">Ingresar</button>
+    </div>
+
+    <script>
+        function mostrarOpciones() {
+            const userType = document.getElementById('user-type').value;
+            const proceedBtn = document.getElementById('proceed-btn');
+            const passwordContainer = document.getElementById('password-container');
+
+            if (userType === 'admin') {
+                passwordContainer.style.display = 'block';
+                proceedBtn.style.display = 'none';
+            } else if (userType === 'user') {
+                passwordContainer.style.display = 'none';
+                proceedBtn.style.display = 'block';
+            } else {
+                passwordContainer.style.display = 'none';
+                proceedBtn.style.display = 'none';
+            }
+        }
+
+        function verificarContraseña() {
+            const password = document.getElementById('password').value;
+
+            if (password === 'byte') {
+                alert('Bienvenido Administrador');
+                // Aquí puedes redirigir al panel de administración
+                window.location.href = 'admin-dashboard.html'; // Cambia esta URL a donde se encuentra tu panel de admin
+            } else {
+                alert('Contraseña incorrecta. Inténtalo de nuevo.');
+            }
+        }
+
+        function proceed() {
+            window.location.href = 'index.html';  // Redirige al usuario a la página de selección de ubicación
+        }
+    </script>
+</body>
+</html>

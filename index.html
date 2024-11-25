@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estacionamientos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f9;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        header {
+            width: 100%;
+            background-color: #004aad;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #004aad;
+            color: white;
+        }
+        button:hover {
+            background-color: #0066cc;
+        }
+        select, button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+        select {
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+        .dark-mode button {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>Selecciona tu Ubicación</header>
+    <div class="container">
+        <div class="button-group">
+            <button onclick="window.location.href='ayuda.html'">Ayuda</button>
+            <button onclick="toggleDarkMode()">Modo Oscuro</button>
+        </div>
+        <label for="ciudad">Ciudad:</label>
+        <select id="ciudad" onchange="actualizarUbicaciones()">
+            <option value="">Seleccione una ciudad</option>
+            <option value="cdmx">Ciudad de México</option>
+            <option value="monterrey">Monterrey</option>
+            <option value="cancun">Cancún</option>
+            <option value="edomex">Estado de México</option>
+            <option value="veracruz">Veracruz</option>
+        </select>
+        <label for="ubicacion" id="ubicacion-label" style="display: none;">Ubicación:</label>
+        <select id="ubicacion" style="display: none;">
+            <option value="">Seleccione una ubicación</option>
+        </select>
+        <button onclick="aceptarUbicacion()">Aceptar Ubicación</button>
+        <button onclick="window.location.href='estado_estacionamiento.html'">Ver disponibilidad de estacionamiento</button>
+        
+    </div>
+
+    <script>
+        function actualizarUbicaciones() {
+            const ciudad = document.getElementById('ciudad').value;
+            const ubicacion = document.getElementById('ubicacion');
+            const ubicacionLabel = document.getElementById('ubicacion-label');
+
+            ubicacion.style.display = 'none';
+            ubicacionLabel.style.display = 'none';
+
+            ubicacion.innerHTML = '<option value="">Seleccione una ubicación</option>';
+
+            if (ciudad === 'edomex') {
+                ubicacion.style.display = 'block';
+                ubicacionLabel.style.display = 'block';
+                ubicacion.innerHTML += `
+                    <option value="tesjo">TESJo</option>
+                    <option value="don-nico">Don Nico</option>
+                `;
+            }
+        }
+
+        function aceptarUbicacion() {
+            const ciudad = document.getElementById('ciudad').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            let url;
+
+            if (ciudad === 'edomex') {
+                if (ubicacion === 'tesjo') {
+                    url = "https://maps.app.goo.gl/CUPAjVbANoRkyLYE9";
+                } else if (ubicacion === 'don-nico') {
+                    url = "https://maps.app.goo.gl/FfibAWq1MdX4Nhpm6";
+                }
+            }
+
+            if (url) {
+                window.open(url, "_blank");
+            } else {
+                alert('Por favor, selecciona una ubicación válida.');
+            }
+        }
+
+        function verDisponibilidad() {
+            const ciudad = document.getElementById('ciudad').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+
+            if (ciudad === 'edomex' && ubicacion) {
+            } else {
+                alert('Por favor, selecciona una ciudad y una ubicación válida.');
+            }
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle("dark-mode");
+        }
+    </script>
+</body>
+</html>

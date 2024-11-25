@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estado del Estacionamiento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      color: #2c3e50;
+    }
+
+    .container {
+      position: relative;
+    }
+
+    .parking-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .parking-top {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .parking-box {
+      width: 80px;
+      height: 50px;
+      border: 2px solid #333;
+      border-radius: 5px;
+      background-color: #e74c3c; /* Rojo por defecto */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8em;
+      color: #fff;
+    }
+
+    .parking-box.free {
+      background-color: #2ecc71; /* Verde si está libre */
+    }
+
+    .parking-columns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .parking-column {
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .entry-exit {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      width: 300px;
+    }
+
+    .entry-exit div {
+      width: 80px;
+      height: 50px;
+      border: 2px solid #333;
+      background-color: #3498db;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
+
+    .stat {
+      margin-top: 20px;
+      background-color: #ffffff;
+      color: #2c3e50;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Estado del Estacionamiento</h1>
+
+    <div class="parking-layout">
+      <div class="parking-top">
+        <div class="parking-box free">Cajón 1</div>
+        <div class="parking-box">Cajón 2</div>
+        <div class="parking-box">Cajón 3</div>
+        <div class="parking-box free">Cajón 4</div>
+      </div>
+
+      <div class="parking-columns">
+        <div class="parking-column">
+          <div class="parking-box">Cajón 5</div>
+          <div class="parking-box">Cajón 6</div>
+          <div class="parking-box">Cajón 7</div>
+          <div class="parking-box">Cajón 8</div>
+        </div>
+        <div class="parking-column">
+          <div class="parking-box">Cajón 9</div>
+          <div class="parking-box">Cajón 10</div>
+          <div class="parking-box">Cajón 11</div>
+          <div class="parking-box">Cajón 12</div>
+        </div>
+      </div>
+
+      <div class="entry-exit">
+        <div>Salida</div>
+        <div>Entrada</div>
+      </div>
+    </div>
+
+    <div class="stat">
+      <p>Todos los cajones están actualmente ocupados.</p>
+      <p>Cajones disponibles: 1, 4</p>
+    </div>
+  </div>
+</body>
+</html>
